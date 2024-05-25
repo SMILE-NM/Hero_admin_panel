@@ -1,43 +1,31 @@
 {
   "heroes": [
     {
-      "id": 1,
-      "name": "Первый герой",
-      "description": "Первый герой в рейтинге!",
-      "element": "fire"
-    },
-    {
-      "id": 2,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
-    },
-    {
-      "id": 3,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
-      "element": "water"
+      "id": "c3211dd5-0d0f-4d51-8dbe-29feecaa82fa",
+      "name": "Мухаммадчон",
+      "description": "фҷвфҷв",
+      "element": "earth"
     }
   ],
   "filters": [
     {
-      "id": 1,
+      "id": "1",
       "name": "all"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "fire"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "water"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "wind"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "earth"
     }
   ]
