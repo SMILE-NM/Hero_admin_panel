@@ -15,25 +15,35 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
 import {
   heroesFetching,
   heroesFetched,
   heroesFetchingError,
+  filtersFetched,
 } from '../../actions';
 
+const validateSchema = Yup.object({
+  name: Yup.string().required('Required'),
+  description: Yup.string().required('Required'),
+  element: Yup.string().required('Required'),
+});
+
 const HeroesAddForm = () => {
+  const elementsHero = useSelector((state) => state.filters);
   const { request } = useHttp();
   const dispatch = useDispatch();
 
-  useEffect(() => {});
+  useEffect(() => {
+    getFilters();
+  }, []);
 
-  const validateSchema = Yup.object({
-    name: Yup.string().required('Required'),
-    description: Yup.string().required('Required'),
-    element: Yup.string().required('Required'),
-  });
+  const getFilters = () => {
+    request('http://localhost:3001/filters').then((filters) =>
+      dispatch(filtersFetched(filters)),
+    );
+  };
 
   const updateListHeroes = () => {
     dispatch(heroesFetching());
@@ -95,10 +105,17 @@ const HeroesAddForm = () => {
             </label>
             <Field required name="element" as="select" className="form-select">
               <option value="">Я владею элементом...</option>
-              <option value="fire">Огонь</option>
+              {elementsHero.map(({ name, id }) => {
+                return (
+                  <option key={id} value={name}>
+                    {name}
+                  </option>
+                );
+              })}
+              {/* <option value="fire">Огонь</option>
               <option value="water">Вода</option>
               <option value="wind">Ветер</option>
-              <option value="earth">Земля</option>
+              <option value="earth">Земля</option> */}
             </Field>
           </div>
           <button
