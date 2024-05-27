@@ -1,32 +1,54 @@
 {
   "heroes": [
     {
-      "id": "2f5ff330-f842-45a9-b7f1-ac3d3cd54237",
-      "name": "Nematov Muhammadjon",
-      "description": "Hello",
-      "element": "water"
+      "id": "76b63ffd-a743-4cc9-8395-61ec1aa9fdad",
+      "name": "John",
+      "description": "Go",
+      "element": "fire"
+    },
+    {
+      "id": "5e9332ed-23f0-4439-86a8-df59d84d23ff",
+      "name": "Smile",
+      "description": "Wind",
+      "element": "wind"
+    },
+    {
+      "id": "e79aede7-70f7-4315-ac91-e425baf16c9b",
+      "name": "Karl",
+      "description": "went",
+      "element": "earth"
     }
   ],
   "filters": [
     {
-      "id": "1",
-      "name": "all"
+      "name": "all",
+      "label": "Все",
+      "className": "btn-outline-dark",
+      "id": "7b7a"
     },
     {
-      "id": "2",
-      "name": "fire"
+      "name": "fire",
+      "label": "Огонь",
+      "className": "btn-danger",
+      "id": "b586"
     },
     {
-      "id": "3",
-      "name": "water"
+      "name": "water",
+      "label": "Вода",
+      "className": "btn-primary",
+      "id": "4896"
     },
     {
-      "id": "4",
-      "name": "wind"
+      "name": "wind",
+      "label": "Ветер",
+      "className": "btn-success",
+      "id": "4d17"
     },
     {
-      "id": "5",
-      "name": "earth"
+      "name": "earth",
+      "label": "Земля",
+      "className": "btn-secondary",
+      "id": "0bb7"
     }
   ]
 }

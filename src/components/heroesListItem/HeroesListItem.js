@@ -1,6 +1,6 @@
 import hero from './hero.png';
 
-const HeroesListItem = ({ id, name, description, element, deleteHero }) => {
+const HeroesListItem = ({ id, name, description, element, onDelete }) => {
   let elementClassName;
   switch (element) {
     case 'fire':
@@ -35,7 +35,7 @@ const HeroesListItem = ({ id, name, description, element, deleteHero }) => {
       </div>
       <span className="position-absolute top-0 start-100 translate-middle badge border rounded-pill bg-light">
         <button
-          onClick={() => deleteHero(id)}
+          onClick={onDelete}
           type="button"
           className="btn-close btn-close"
           aria-label="Close"
