@@ -1,29 +1,22 @@
-import { useHttp } from '../../hooks/http.hook';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import store from '../../store';
 
-import { heroCreated } from '../heroesList/heroesSlice';
 import { selectAll } from '../heroesFilters/filtersSlice';
+import { useCreateHeroMutation } from '../../api/apiSlice';
 
 const HeroesAddForm = () => {
-  // Состояния для контроля формы
   const [heroName, setHeroName] = useState('');
   const [heroDescr, setHeroDescr] = useState('');
   const [heroElement, setHeroElement] = useState('');
 
+  const [createHero] = useCreateHeroMutation();
   const { filtersLoadingStatus } = useSelector((state) => state.filters);
-  const dispatch = useDispatch();
-  const { request } = useHttp();
-
   const filters = selectAll(store.getState());
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // Можно сделать и одинаковые названия состояний,
-    // хотел показать вам чуть нагляднее
-    // Генерация id через библиотеку
     const newHero = {
       id: uuidv4(),
       name: heroName,
@@ -31,14 +24,8 @@ const HeroesAddForm = () => {
       element: heroElement,
     };
 
-    // Отправляем данные на сервер в формате JSON
-    // ТОЛЬКО если запрос успешен - отправляем персонажа в store
-    request('http://localhost:3001/heroes', 'POST', JSON.stringify(newHero))
-      .then((res) => console.log(res, 'Отправка успешна'))
-      .then(dispatch(heroCreated(newHero)))
-      .catch((err) => console.log(err));
+    createHero(newHero).unwrap();
 
-    // Очищаем форму после отправки
     setHeroName('');
     setHeroDescr('');
     setHeroElement('');
@@ -51,10 +38,8 @@ const HeroesAddForm = () => {
       return <option>Ошибка загрузки</option>;
     }
 
-    // Если фильтры есть, то рендерим их
     if (filters && filters.length > 0) {
       return filters.map(({ name, label }) => {
-        // Один из фильтров нам тут не нужен
         // eslint-disable-next-line
         if (name === 'all') return;
 
